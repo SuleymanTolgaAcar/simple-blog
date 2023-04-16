@@ -1,13 +1,10 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import Post from "../components/Post";
 
 export default function Home() {
   return (
     <>
       <button className="btn btn-outline-primary">dlfn</button>
+      <Post />
     </>
   );
 }
