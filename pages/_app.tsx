@@ -1,12 +1,13 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
 
+import clientPromise from "@/lib/mongodb";
+
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 export default function App({
   Component,
@@ -15,6 +16,7 @@ export default function App({
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
+
   return (
     <SessionProvider session={session}>
       <Head>
@@ -22,7 +24,6 @@ export default function App({
       </Head>
       <Navbar />
       <Component {...pageProps} />
-      <Footer />
     </SessionProvider>
   );
 }

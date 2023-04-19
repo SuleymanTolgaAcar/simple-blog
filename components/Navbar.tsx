@@ -5,11 +5,8 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom mb-2">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Simple Blog
-        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,26 +19,33 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-3">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" href="#">
+              <Link
+                className="btn btn-outline-dark"
+                aria-current="page"
+                href="/"
+              >
                 Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="btn btn-outline-dark"
+                aria-current="page"
+                href="/post/create"
+              >
+                Create Post
               </Link>
             </li>
           </ul>
           {!session && (
-            <button
-              className="btn btn-outline-success"
-              onClick={() => signIn()}
-            >
+            <button className="btn btn-outline-dark" onClick={() => signIn()}>
               Sign in
             </button>
           )}
           {session && (
-            <button
-              className="btn btn-outline-success"
-              onClick={() => signOut()}
-            >
+            <button className="btn btn-outline-dark" onClick={() => signOut()}>
               Sign out
             </button>
           )}
