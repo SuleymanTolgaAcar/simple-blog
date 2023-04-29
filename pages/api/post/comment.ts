@@ -17,11 +17,6 @@ export default async function handler(
         $push: { comments: comment },
       }
     );
-    console.log(
-      await db
-        .collection("posts")
-        .findOne({ _id: new ObjectId(comment.postId) })
-    );
     res.status(200).json({ message: "Comment created" });
   } catch (err) {
     console.log(err);
