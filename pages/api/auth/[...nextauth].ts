@@ -4,6 +4,7 @@ import GithubProvider from "next-auth/providers/github";
 import clientPromise from "@/lib/mongodb";
 
 export const authOptions = {
+  site: process.env.NEXTAUTH_URL,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GithubProvider({
