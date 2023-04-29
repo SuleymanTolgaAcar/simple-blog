@@ -45,6 +45,7 @@ export default function PostDetails({ post }: { post: PostInterface }) {
             fetch(`/api/post/${post._id}`, {
               method: "DELETE",
             });
+            router.push("/");
           }}
           disabled={!(session && session.user!.name == post.author)}
         >
@@ -71,38 +72,30 @@ export default function PostDetails({ post }: { post: PostInterface }) {
         <>
           <h2 className="text-center border-bottom fs-2 w-100 p-2">Comments</h2>
           <div className="w-100 d-flex flex-column align-items-center p-4 gap-2">
-            {post.comments
-              .sort((a, b) => {
-                if (a > b) {
-                  return 1;
-                } else {
-                  return -1;
-                }
-              })
-              .map((comment: CommentInterface) => (
-                <div
-                  key={comment._id.toString()}
-                  className="card col-12 col-md-6"
-                >
-                  <div className="card-header d-flex">
-                    <h6 className="mb-0">{comment.author}</h6>
-                    <p className="ms-auto mb-0 text-muted">
-                      {new Date(comment.date).toLocaleDateString("tr-TR", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}{" "}
-                      {new Date(comment.date).toLocaleTimeString("tr-TR", {
-                        hour: "numeric",
-                        minute: "numeric",
-                      })}
-                    </p>
-                  </div>
-                  <div className="card-body">
-                    <p className="mb-0">{comment.content}</p>
-                  </div>
+            {post.comments.map((comment: CommentInterface) => (
+              <div
+                key={comment._id.toString()}
+                className="card col-12 col-md-6"
+              >
+                <div className="card-header d-flex">
+                  <h6 className="mb-0">{comment.author}</h6>
+                  <p className="ms-auto mb-0 text-muted">
+                    {new Date(comment.date).toLocaleDateString("tr-TR", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}{" "}
+                    {new Date(comment.date).toLocaleTimeString("tr-TR", {
+                      hour: "numeric",
+                      minute: "numeric",
+                    })}
+                  </p>
                 </div>
-              ))}
+                <div className="card-body">
+                  <p className="mb-0">{comment.content}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </>
       )}
